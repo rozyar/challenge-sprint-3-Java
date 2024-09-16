@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::body})}">
+<head>
+    <title>Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registrar</h2>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div>
+                <label>Nome:</label>
+                <input type="text" th:field="*{name}" required/>
+                <div th:if="${#fields.hasErrors('name')}" style="color:red" th:errors="*{name}"></div>
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required/>
+                <div th:if="${#fields.hasErrors('email')}" style="color:red" th:errors="*{email}"></div>
+            </div>
+            <div>
+                <label>Senha:</label>
+                <input type="password" th:field="*{password}" required/>
+                <div th:if="${#fields.hasErrors('password')}" style="color:red" th:errors="*{password}"></div>
+            </div>
+            <div>
+                <label>Confirmar Senha:</label>
+                <input type="password" th:field="*{confirmPassword}" required/>
+                <div th:if="${error}" style="color:red" th:text="${error}"></div>
+            </div>
+            <div>
+                <button type="submit">Registrar</button>
+            </div>
+        </form>
+        <p>Já tem uma conta? <a th:href="@{/login}" style="color: #FFC107;">Entrar</a></p>
+    </div>
+</body>
+</html>

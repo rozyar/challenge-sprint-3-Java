@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout (content)">
+<head>
+    <title>AI Credit Analyzer</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+	<header>
+	        <h1>AI Credit Analyzer</h1>
+	        <nav sec:authorize="isAuthenticated()">
+	            <a th:href="@{/home}" class="nav-button">Home</a> |
+	            <a th:href="@{/credit-analysis}" class="nav-button">Análise de Crédito</a> |
+	            <a th:href="@{/credit-prediction}" class="nav-button">Previsão de Crédito</a> |
+				<form th:action="@{/logout}" method="post" style="display:inline;">
+				    <button type="submit" class="nav-button logout-button">Logout</button>
+				</form>
+	        </nav>
+	    </header>
+
+    <div th:insert="${content}"></div>
+
+    <footer>
+        &copy; 2024 AI Credit Analyzer
+    </footer>
+</body>
+</html>

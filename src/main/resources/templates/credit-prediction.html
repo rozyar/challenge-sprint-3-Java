@@ -1,0 +1,52 @@
+	<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::body})}">
+	<head>
+	    <title>Previsão de Crédito</title>
+	</head>
+	<body>
+	<div class="container">
+		<div class="form-container">
+	    <h2>Previsão de Crédito</h2>
+	    <form th:action="@{/credit-prediction}" method="post">
+	        <div>
+	            <label>Valor Solicitado:</label>
+	            <input type="text" name="amount" required/>
+	        </div>
+	        <div>
+	            <label>Renda Mensal:</label>
+	            <input type="text" name="income" required/>
+	        </div>
+	        <div>
+	            <button type="submit">Analisar</button>
+	        </div>
+	    </form>
+		</div>
+	
+	    <!-- Display history of predictions -->
+	    <h3>Histórico de Previsões</h3>
+	    <table class="table-container">
+	        <thead>
+	            <tr>
+	                <th>Data</th>
+	                <th>Valor Solicitado</th>
+	                <th>Renda Mensal</th>
+	                <th>Resultado</th>
+	                <th>Ações</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="analysis : ${analyses}">
+	                <td th:text="${#temporals.format(analysis.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+	                <td th:text="${analysis.amount}"></td>
+	                <td th:text="${analysis.income}"></td>
+	                <td th:text="${analysis.result}"></td>
+	                <td>
+	                    <a th:href="@{/analysis/edit/{id}(id=${analysis.id})}">Editar</a> |
+	                    <a th:href="@{/analysis/delete/{id}(id=${analysis.id})}">Excluir</a>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+	</body>
+	</html>

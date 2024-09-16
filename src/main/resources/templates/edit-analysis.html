@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::body})}">
+<head>
+    <title>Editar Análise</title>
+</head>
+<body>
+	<div>
+	    <h2>Editar Análise</h2>
+	    <form th:action="@{/analysis/update}" th:object="${analysis}" method="post">
+	        <input type="hidden" th:field="*{id}"/>
+	        <div th:if="${analysis.type == 'analysis'}">
+	            <label>Score Serasa:</label>
+	            <input type="text" th:field="*{inputData}" required/>
+	        </div>
+	        <div th:if="${analysis.type == 'prediction'}">
+	            <label>Valor Solicitado:</label>
+	            <input type="text" th:field="*{amount}" required/>
+	            <label>Renda Mensal:</label>
+	            <input type="text" th:field="*{income}" required/>
+	        </div>
+	        <div>
+	            <label>Resultado Atual:</label>
+	            <textarea th:field="*{result}" readonly></textarea>
+	        </div>
+	        <div>
+	            <button type="submit">Atualizar Análise</button>
+	        </div>
+	    </form>
+	</div>
+	</body>
+	</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::body})}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div class="welcome-container">
+    <h2>Bem-vindo(a)</h2>
+    <p>Escolha uma das opções abaixo:</p>
+    <div class="options-container">
+        <a class="option-link" th:href="@{/credit-analysis}">Análise de Crédito</a>
+        <a class="option-link" th:href="@{/credit-prediction}">Previsão de Crédito</a>
+    </div>
+</div>
+</body>
+</html>
