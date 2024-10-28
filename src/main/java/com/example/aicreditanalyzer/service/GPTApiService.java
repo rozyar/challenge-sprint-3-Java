@@ -11,7 +11,7 @@ public class GPTApiService {
 
     private OkHttpClient client = new OkHttpClient();
 
-    private String apiKey = "API_KEY";
+    private String apiKey = System.getenv("API_KEY");
 
     public String analyzeCredit(String score) {
         String url = "https://api.openai.com/v1/chat/completions";
